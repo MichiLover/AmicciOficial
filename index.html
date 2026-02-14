@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototipo - Amicci Pastas</title>
+    <link rel="icon" type="image/png" href="aaag-removebg-preview.png">
+    <link rel="stylesheet" href="css/probando.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="img/favicon.png">
+    
+    <!--tipografia montserrat-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,600;1,600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="section-header">
+        
+        <nav class="navbar-fijo">
+            <div class="nav-container">
+                <button class="menu-hamburguesa" id="btn-menu">
+                    ☰
+                </button>
+
+                <div class="nav-group group-left">
+                    <a href="#inicio">Inicio</a>
+                    <a href="#servicios">Nosotros</a>
+                </div>
+
+                <div class="nav-logo-central">
+                    <img src="img/3.nofondo.png" alt="Logo">
+                </div>
+
+                <div class="nav-group group-right">
+                    <a href="#modalidad">Productos</a>
+                    <a href="quien_soy.html">Contacto</a>
+                </div>
+
+                <div class="menu-movil" id="menu-desplegable">
+                    <a href="#inicio">Inicio</a>
+                    <a href="#servicios">Nosotros</a>
+                    <a href="#modalidad">Productos</a>
+                    <a href="quien_soy.html">Contacto</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="intro-grid" id="inicio">
+            <div class="intro-texto">
+                <h1 class="titulo-brand">
+                    Sobre <span class="estilo-batuphat" data-text="nosotros">nosotros</span>
+                </h1>
+                <p class="intro-p">
+                    Somos <strong>"Amicci Pastas"</strong> y elaboramos pastas frescas.<br>
+                    Priorizamos la materia prima para obtener un producto con textura y mucho sabor.
+                </p>
+            </div>
+            <div class="intro-imagen">
+                <img src="img/tortas.png" alt="Logo Amicci" class="logo-intro">
+            </div>
+        </div>
+    </header>
+
+    <!--- SECCION COMO ENCARGAR LOS PRODUCTOS-->
+    <main class="main-container">
+        
+        <section class="seccion-servicios" id="servicios">
+            <div class="text-center">
+                <h2 class="seccion-titulo">Cómo conseguir nuestros productos</h2>
+                <div class="order-flow">
+                    <p>Trabajamos con <strong>encargos semanales</strong>. Los pedidos se toman de <strong>lunes a jueves</strong>.</p>
+                    <p>Se entregan <strong>sábado o domingo</strong>. Coordinamos <em>retiro</em> o <em>delivery</em>.</p>
+                </div>
+            </div>
+
+            <div class="grid-servicios">
+                <div class="card-servicio">
+                    <span class="material-symbols-outlined icon-large">menu_book_2</span>
+                    <h3>Encargar</h3>
+                    <p>De lunes a jueves vía WhatsApp.</p>
+                    <ul class="lista-simple">
+                        <li><span class="material-symbols-outlined">check_circle</span> Seña del 50%.</li>
+                    </ul>
+                </div>
+
+                <div class="card-servicio">
+                    <span class="material-symbols-outlined icon-large">takeout_dining</span>
+                    <h3>Retiro / Envío</h3>
+                    <p>Elegí retiro en local o delivery propio.</p>
+                    <ul class="lista-simple">
+                        <li><span class="material-symbols-outlined">check_circle</span> Uber Eats disponible.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+<br>
+<br>
+        <div class="separador-carta">
+            <h2 class="seccion-titulo">Carta Completa</h2>
+        </div>
+
+        <section class="seccion-menu-carrusel">
+            <div class="carrusel-interface">
+                <button class="flecha-btn izq" onclick="scrollCarrusel(-1)">❮</button>
+                <div class="carrusel-ventana" id="ventana">
+                    <div class="carrusel-riel">
+                        <img src="img/menuintro.jpeg" alt="Menu 1">
+                        <img src="img/menu1.jpeg" alt="Menu 2">
+                        <img src="img/menu2.jpeg" alt="Menu 3">
+                        <img src="img/menufin.jpeg" alt="Menu 4">
+                    </div>
+                </div>
+                <button class="flecha-btn der" onclick="scrollCarrusel(1)">❯</button>
+            </div>
+            <p class="swipe-text">← Deslizá para hojear →</p>
+        </section>
+
+        <div class="pdf-container">
+            <a href="menu-completo.pdf" download class="btn-pdf-estilo">
+                📄 DESCARGAR MENÚ EN PDF
+            </a>
+        </div>
+
+        <div class="whatsapp-cta">
+            <p>Consultas y pedidos especiales</p>
+            <a href="https://wa.me/5492645458705" target="_blank">Escribinos por WhatsApp</a>
+        </div>
+    </main>
+
+    <footer class="section-footer">
+        <div class="footer-content">
+            <p>© 2026 Amicci Pastas - Hecho en San Juan</p>
+        </div>
+    </footer>
+
+    <script>
+        function scrollCarrusel(direccion) {
+            const v = document.getElementById('ventana');
+            const anchoFoto = v.clientWidth;
+            v.scrollBy({ left: direccion * anchoFoto, behavior: 'smooth' });
+        }
+    </script>
+    <script>
+        const btn = document.getElementById('btn-menu');
+        const menu = document.getElementById('menu-desplegable');
+
+        btn.onclick = function() {
+            menu.classList.toggle('abierto');
+        };
+
+        // Esto cierra el menú cuando hacés click en un link
+        menu.onclick = function() {
+            menu.classList.remove('abierto');
+        };
+    </script>
+</body>
+</html>
