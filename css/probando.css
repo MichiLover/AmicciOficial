@@ -1,0 +1,576 @@
+/* CAPA DE ATRÁS (El cuerpo/sombra) */
+@font-face {
+    font-family: 'BatuAtras';
+    src: url('../fonts/Batu2.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* CAPA DE ADELANTE (La letra principal) */
+@font-face {
+    font-family: 'BatuFrente';
+    src: url('../fonts/Batu1.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ESTILO PARA EL TEXTO */
+.estilo-batuphat {
+    position: relative;
+    display: inline-block;
+    font-family: 'BatuAtras', sans-serif; /* Primero se ve lo de atrás */
+    color: #FBE0D7; /* Color de la sombra (ejemplo: gris) */
+    line-height: 1;
+}
+
+/* EL TRUCO: Ponemos la letra de adelante encima */
+.estilo-batuphat::after {
+    content: attr(data-text); /* Lee el texto automáticamente del HTML */
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: 'BatuFrente', sans-serif; /* La letra principal */
+    color: #CD2932; /* Color de la letra de adelante (ejemplo: negro) */
+    width: 100%;
+}
+
+:root {
+    --color-fondo-cuadricula: #fff5e6; 
+    --color-solido: #ffffff;          
+    --color-fideo: #CD2932; 
+    --ancho-maximo: 1000px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fff8ee;
+    background-image: url("../img/icon-remove.png");
+    background-size: 180px;
+    background-repeat: repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* --- ESTRUCTURA BASE --- */
+
+.section-header, .main-container, .section-footer {
+    width: var(--ancho-maximo);
+    max-width: 95%;
+    background-color: var(--color-solido);
+    border-left: 2px solid var(--color-fideo);
+    border-right: 2px solid var(--color-fideo);
+    box-sizing: border-box;
+}
+
+
+/* LOGO CENTRAL */
+.nav-logo-central img {
+    height: 75px; /* Tamaño armonioso */
+    width: auto;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.nav-logo-central img:hover {
+    transform: scale(1.05); /* Efecto sutil al pasar el mouse */
+}
+
+/* NAVBAR PRINCIPAL */
+.navbar-fijo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-style: normal; 
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: var(--color-solido);
+    border-bottom: 2px solid var(--color-fideo);
+    box-sizing: border-box;
+}
+
+.nav-container {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    align-items: center;
+    max-width: 1000px; 
+    margin: 0 auto;
+    height: 90px;
+    padding: 0 20px;
+    text-transform: uppercase;
+}
+
+/* Esto apunta a los links específicos dentro de los grupos del navbar */
+.nav-group a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;      /* Semibold */
+    font-style: italic;    /* Itálica */
+    text-decoration: none; /* Quita el subrayado azul por defecto */
+    /* CAMBIO DE COLOR AQUÍ */
+    color: var(--color-fideo); /* Usa el rojo que definiste en :root */
+    
+    transition: 0.3s;      /* Para que el hover sea suave */
+}
+
+/* GRUPOS LATERALES (Las "alas") */
+.nav-group {
+    flex: 1; /* Esto hace que el lado izquierdo y derecho pesen lo mismo */
+    display: flex;
+    align-items: center;
+    gap: 40px; /* Aumentamos el espacio entre palabras (Inicio - Servicios) */
+}
+
+/* Ajuste de distancias respecto al logo */
+.group-left {
+    justify-content: flex-end; /* Empuja los links HACIA el logo */
+    padding-right: 50px;       /* Distancia exacta entre "Servicios" y el Logo */
+}
+
+.group-right {
+    justify-content: flex-start; /* Empuja los links HACIA el logo */
+    padding-left: 50px;          /* Distancia exacta entre el Logo y "Modalidad" */
+}
+
+
+.nav-group a:hover {
+    color: #444;
+}
+
+
+/* --- INTRO GRID (Texto + Logo) --- */
+.intro-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 30px;
+    padding: 60px 40px;
+}
+
+.titulo-brand {
+    font-family: 'Montserrat', sans-serif; /* Montserrat es sans-serif, no serif */
+    font-size: 3rem;
+    color: var(--color-fideo);
+    margin: 0 0 15px 0;
+    
+    /* ASÍ ES COMO SE PONE SEMIBOLD E ITALIC CORRECTAMENTE: */
+    font-weight: 600; /* El peso semibold suele ser 600 */
+    font-style: italic; /* La inclinación va por separado */
+    
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.intro-p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+.logo-intro {
+    width: 100%;
+    max-width: 250px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* --- CONTENIDO PRINCIPAL --- */
+.main-container {
+    padding: 40px;
+    border-top: none;
+    flex-grow: 1;
+}
+
+.seccion-titulo {
+    text-align: center;
+    letter-spacing: 2px;
+    color: var(--color-fideo);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;      /* Semibold */
+    font-style: italic;    /* Itálica */
+    text-transform: uppercase;
+}
+ 
+.seccion-servicios {
+    background-color: rgba(183, 28, 28, 0.2); /* Gris bien marcado (si querés otro, avisame) */
+    padding: 80px 0;           /* Espacio interno arriba y abajo */
+    margin: 0;                 /* Reset para que no se desplace raro */
+    width: 100%;
+    display: block;            /* Asegura que ocupe su lugar */
+    
+}
+
+/* Para que las letras y el contenido no toquen los bordes */
+.text-center, .grid-servicios {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.order-flow {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    margin: 20px auto 40px;
+    color: #444;
+}
+
+/*--------------SECCION COMO ENCARGAR LOS PRODUCTOS-----------------*/
+/*ACA INICIA*/
+
+/* --- SECCIÓN SERVICIOS Y CARDS --- */
+
+.grid-servicios {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-bottom: 60px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-servicio {
+    padding: 40px 30px;
+    text-align: center;
+    background: transparent;
+    transition: background 0.3s ease;
+}
+
+/* Efecto sutil al pasar el mouse por la tarjeta */
+.card-servicio:hover {
+    background-color: rgba(205, 41, 50, 0.02);
+}
+
+/* LA LÍNEA ROJA DIVISORIA (Solo en PC) */
+.card-servicio:first-child {
+    border-right: 2px solid var(--color-fideo);
+}
+
+/* --- ICONOS PRINCIPALES (Grandes) --- */
+.card-servicio .icon-large {
+    font-size: 55px !important;
+    color: var(--color-fideo); /* Rojo Amicci */
+    margin-bottom: 20px;
+    display: inline-block;
+    filter: drop-shadow(2px 3px 4px rgba(0,0,0,0.1));
+    font-variation-settings: 'wght' 400, 'opsz' 48;
+    transition: transform 0.3s ease;
+}
+
+.card-servicio:hover .icon-large {
+    transform: translateY(-8px) scale(1.05);
+}
+
+/* --- TÍTULOS Y TEXTO DE LAS CARDS --- */
+.card-servicio h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    text-transform: uppercase;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.card-servicio p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300; /* Montserrat Light */
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* --- LISTA DE DETALLES (Checks) --- */
+.lista-simple {
+    list-style: none !important;
+    padding: 0;
+    margin: 0;
+}
+
+.lista-simple li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+/* Iconos de Check (Los chiquitos) */
+.lista-simple li .material-symbols-outlined {
+    font-size: 20px !important;
+    color: #2e7d32; /* Verde para confirmación */
+    font-variation-settings: 'wght' 500;
+}
+
+/*----------ACA TERMINA LA SECCION----------*/
+
+
+/* --- CARRUSEL --- */
+.carrusel-interface {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.carrusel-ventana {
+    flex: 1;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    display: flex;
+}
+
+.carrusel-ventana::-webkit-scrollbar { display: none; }
+
+.carrusel-riel { display: flex; width: 100%; }
+
+.carrusel-riel img {
+    flex: 0 0 100%;
+    width: 100%;
+    scroll-snap-align: start;
+    object-fit: contain;
+}
+
+.flecha-btn {
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: var(--color-fideo);
+    cursor: pointer;
+}
+
+.swipe-text {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #777;
+    margin-top: 10px;
+}
+
+/* --- BOTONES Y WHATSAPP --- */
+.pdf-container { text-align: center; margin: 30px 0; }
+
+.btn-pdf-estilo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;      /* Semibold */
+    font-style: italic;    /* Itálica */
+    color: var(--color-fideo);
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid var(--color-fideo);
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+/* Cuando pasás el mouse */
+.btn-pdf-estilo:hover {
+    background-color: var(--color-fideo); /* Se llena de rojo */
+    color: white;                        /* Letra blanca */
+}
+
+/* Cuando hacés clic */
+.btn-pdf-estilo:active {
+    background-color: #8e1616;           /* Un rojo un toque más oscuro para que se note el click */
+    border-color: #8e1616;
+    color: white;
+}
+
+.whatsapp-cta {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;      /* Semibold */
+    font-style: italic;    /* Itálica */
+    text-align: center;
+    margin: 60px 0;
+}
+
+.whatsapp-cta a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;      /* Semibold */
+    font-style: italic;    /* Itálica */
+    text-decoration: none; /* Quita el subrayado azul por defecto */
+    font-size: 1.5rem;
+    color: var(--color-fideo);
+    text-decoration: none;
+    border-bottom: 2px solid var(--color-fideo);
+    /* PREPARACIÓN PARA EL HOVER */
+    display: inline-block; /* Necesario para que el transform funcione */
+    transition: all 0.1s ease; /* Hace que el movimiento sea suave */
+}
+
+.whatsapp-cta a:hover {
+    /* MOVIMIENTO: Sube un poquito y crece apenas */
+    transform: translateY(-3px) scale(1.02);
+    
+    /* SOMBREADO: Crea un resplandor suave del mismo color que la letra */
+    text-shadow: 0px 4px 10px rgba(205, 41, 50, 0.2);
+    
+    /* BORDE: Se hace un poquito más grueso */
+    border-bottom: 3px solid var(--color-fideo);
+    
+    /* COLOR: Un rojo apenas más intenso si querés */
+    color: #b01e26; 
+}
+
+/* --- FOOTER --- */
+.section-footer {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;      /* Semibold */
+    font-style: italic;    /* Itálica */
+    border-top: 2px solid var(--color-fideo);
+    text-align: center;
+    padding: 20px;
+}
+
+
+
+
+/* Botón oculto en PC */
+.menu-hamburguesa {
+    display: none;
+    font-size: 30px;
+    background: none;
+    border: none;
+    color: var(--color-fideo);
+    cursor: pointer;
+}
+
+/* Menú móvil oculto por defecto */
+.menu-movil {
+    display: none;
+    position: absolute;
+    top: 90px;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    flex-direction: column;
+    border-bottom: 2px solid var(--color-fideo);
+    z-index: 999;
+}
+
+/* Esto es el diseño de cada opción del menú */
+.menu-movil a {
+    display: block;          /* Hace que el link ocupe todo el ancho */
+    padding: 15px 20px;      /* Espacio interno para que sea grande el botón */
+    text-decoration: none;   /* Saca el subrayado */
+    color: #444;             /* Color de letra normal */
+    transition: 0.3s;        /* Para que el cambio de color sea suave */
+    text-align: center;
+}
+
+/* ACÁ ESTÁ LO QUE PEDISTE: El cambio al pasar el mouse (o tocar) */
+.menu-movil a:hover {
+    background-color: var(--color-fideo); /* Todo el fondo de rojo */
+    color: white !important;              /* La letra blanca */
+}
+/* Clase que activa el JavaScript */
+.menu-movil.abierto {
+    display: flex;
+}
+
+
+/* CUANDO LA PANTALLA ES CHICA */
+
+@media (max-width: 600px) {
+    /* --- 1. NAVBAR MÓVIL --- */
+    .nav-group { 
+        display: none !important; 
+    }
+
+    .nav-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .menu-hamburguesa { 
+        display: block !important; 
+        position: absolute;
+        left: 20px;
+        background: none;
+        border: none;
+        font-size: 35px;
+        color: var(--color-fideo);
+        cursor: pointer;
+    }
+
+    .nav-logo-central {
+        margin: 0 !important;
+        display: block;
+    }
+
+    /* --- 2. ARREGLO DE LA IMAGEN Y TEXTO (INTRO) --- */
+    .intro-grid {
+        display: flex;         /* Cambiamos Grid por Flex */
+        flex-direction: column; /* Apilamos uno debajo del otro */
+        text-align: center;
+        padding: 40px 20px;
+        gap: 30px;
+    }
+
+    .intro-texto {
+        order: 1; /* El texto arriba */
+    }
+
+    .intro-imagen {
+        order: 2; /* La imagen abajo */
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .logo-intro {
+        max-width: 220px; /* Tamaño controlado para que no desaparezca */
+        height: auto;
+        display: block;
+    }
+
+    .titulo-brand {
+        font-size: 2.2rem; /* Achicamos un poco el título */
+    }
+
+/* --- 3. ARREGLO DE LAS CARDS DE SERVICIOS --- */
+    .seccion-servicios {
+        /* Arriba: 40px | Derecha: 0 | Abajo: 10px | Izquierda: 0 */
+        padding: 40px 0 30px 0; 
+    }
+    .order-flow {
+        padding: 0 25px;       /* Le da aire a los costados para que no toque las líneas rojas */
+        margin: 15px auto 30px; /* Ajusta el espacio arriba y abajo */
+        line-height: 1.5;      /* Separa un poquito las líneas de texto para que sea más legible */
+    }
+
+    .order-flow p {
+        font-size: 0.95rem;    /* Achicamos apenas la letra para que entre mejor en pantallas angostas */
+        margin-bottom: 10px;   /* Separa los dos párrafos entre sí */
+    }
+
+    .grid-servicios {
+        grid-template-columns: 1fr; 
+        gap: 0; 
+        padding: 0 10px; /* Un poco de margen a los costados para que no toquen los bordes del cel */
+    }
+
+    .card-servicio {
+        padding: 60px 20px; /* Aumentamos el padding arriba y abajo de cada card para centrarlas visualmente */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Asegura que todo (iconos y texto) esté centrado */
+    }
+
+    .card-servicio:first-child {
+        border-right: none;
+        border-bottom: 2px solid var(--color-fideo); 
+    }
+
+    /* Espacio extra arriba de la segunda card para que no pegue con la línea */
+    .card-servicio:last-child {
+        padding-top: 60px; 
+    }
+}
