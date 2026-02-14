@@ -18,20 +18,26 @@
 .estilo-batuphat {
     position: relative;
     display: inline-block;
-    font-family: 'BatuAtras', sans-serif; /* Primero se ve lo de atrás */
-    color: #FBE0D7; /* Color de la sombra (ejemplo: gris) */
-    line-height: 1;
+    font-family: 'BatuAtras', sans-serif;
+    color: #FBE0D7;
+    line-height: 1; /* Sincronizado */
+    letter-spacing: 0; /* Aseguramos que no haya espacios raros */
 }
 
-/* EL TRUCO: Ponemos la letra de adelante encima */
 .estilo-batuphat::after {
-    content: attr(data-text); /* Lee el texto automáticamente del HTML */
+    content: attr(data-text);
     position: absolute;
     left: 0;
     top: 0;
-    font-family: 'BatuFrente', sans-serif; /* La letra principal */
-    color: #CD2932; /* Color de la letra de adelante (ejemplo: negro) */
     width: 100%;
+    /* PROPIEDADES QUE DEBEN SER IGUALES: */
+    font-family: 'BatuFrente', sans-serif;
+    line-height: 1; /* AHORA SÍ coinciden */
+    letter-spacing: 0;
+    
+    color: #CD2932;
+    pointer-events: none; /* Evita problemas si querés hacer clic */
+    
 }
 
 :root {
@@ -573,4 +579,5 @@ body {
     .card-servicio:last-child {
         padding-top: 60px; 
     }
+
 }
